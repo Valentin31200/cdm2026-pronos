@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDM 2026 · Pronostics · Valentin 31200</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+:root {
+  --green-dark: #071a0b;
+  --green-mid: #0d2b14;
+  --green-border: #1b5e20;
+  --green-accent: #2e7d32;
+  --green-light: #81c784;
+  --gold: #f5c542;
+  --gold-dark: #c49b10;
+  --text: #e8f5e9;
+  --text-muted: #81c784;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--green-dark); color: var(--text); min-height: 100vh; }
+
+.header {
+  background: linear-gradient(135deg, #071a0b 0%, #0d2b14 60%, #0a1f0d 100%);
+  border-bottom: 2px solid var(--gold);
+  padding: 20px 24px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before { content:'⚽'; position:absolute; font-size:120px; opacity:0.04; top:-20px; right:-20px; transform:rotate(15deg); }
+.header h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(1.8rem,5vw,2.8rem); letter-spacing:4px; color:var(--gold); line-height:1; }
+.header .sub { font-size:0.72rem; color:var(--green-light); letter-spacing:3px; text-transform:uppercase; margin-top:4px; }
+.header .tel { font-size:0.78rem; color:var(--gold); font-weight:600; margin-top:6px; }
+
+.sync-bar { display:flex; align-items:center; justify-content:center; gap:8px; padding:6px 16px; font-size:0.72rem; background:var(--green-mid); border-bottom:1px solid var(--green-border); color:var(--text-muted); }
+.sync-dot { width:8px; height:8px; border-radius:50%; background:#4caf50; flex-shrink:0; }
+.sync-dot.syncing { background:var(--gold); animation:pulse 1s infinite; }
+.sync-dot.error { background:#f44336; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.tabs { display:flex; overflow-x:auto; border-bottom:1px solid var(--green-border); background:var(--green-mid); }
+.tab { flex:1; min-width:100px; padding:12px 8px; border:none; background:transparent; color:var(--text-muted); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; border-bottom:3px solid transparent; white-space:nowrap; }
+.tab.active { color:var(--gold); border-bottom-color:var(--gold); background:rgba(245,197,66,0.06); }
+
+.panel { display:none; padding:20px; max-width:1100px; margin:0 auto; }
+.panel.active { display:block; }
+
+.card { background:var(--green-mid); border:1px solid var(--green-border); border-radius:10px; padding:18px; margin-bottom:16px; }
+.card-title { font-family:'Bebas Neue',sans-serif; color:var(--gold); font-size:1.2rem; letter-spacing:2px; margin-bottom:14px; }
+
+.form-row { display:flex; gap:8px; flex-wrap:wrap; }
+.form-row input, .form-row select { flex:1; min-width:130px; padding:9px 12px; background:var(--green-dark); border:1px solid var(--green-accent); border-radius:6px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.85rem; transition:border-color 0.2s; }
+.form-row input:focus, .form-row select:focus { outline:none; border-color:var(--gold); }
+.form-row input::placeholder { color:var(--green-light); opacity:0.5; }
+.btn-gold { padding:9px 20px; background:var(--gold); border:none; border-radius:6px; color:#071a0b; font-weight:700; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.85rem; white-space:nowrap; transition:background 0.2s; }
+.btn-gold:hover { background:var(--gold-dark); color:#fff; }
+.btn-gold:disabled { opacity:0.5; cursor:not-allowed; }
+.btn-green { padding:7px 14px; background:var(--green-accent); border:none; border-radius:5px; color:#fff; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.78rem; font-weight:500; }
+.btn-red { padding:7px 10px; background:#b71c1c; border:none; border-radius:5px; color:#fff; cursor:pointer; font-size:0.75rem; }
+
+.table-wrap { overflow-x:auto; border-radius:8px; border:1px solid var(--green-border); }
+table { width:100%; border-collapse:collapse; font-size:0.82rem; min-width:580px; }
+thead tr { background:var(--green-accent); }
+th { padding:10px 14px; text-align:left; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#fff; font-size:0.7rem; }
+tbody tr { border-bottom:1px solid rgba(27,94,32,0.5); transition:background 0.15s; }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:hover { background:rgba(46,125,50,0.1); }
+td { padding:10px 14px; vertical-align:middle; }
+.tag { display:inline-block; padding:3px 9px; border-radius:20px; font-size:0.67rem; font-weight:600; }
+.tag.proprio { background:rgba(21,101,192,0.3); color:#90caf9; border:1px solid #1565c0; }
+.tag.locataire { background:rgba(74,20,140,0.3); color:#ce93d8; border:1px solid #4a148c; }
+.pts-big { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:var(--gold); }
+.empty-state { text-align:center; color:var(--green-light); padding:36px; opacity:0.5; font-size:0.85rem; }
+
+.matches-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
+.match-card { background:var(--green-mid); border:1px solid var(--green-border); border-radius:10px; padding:14px; }
+.match-card.has-result { border-color:var(--gold-dark); }
+.match-meta { font-size:0.68rem; color:var(--green-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; }
+.match-phase { color:var(--gold); font-size:0.65rem; }
+.teams-row { display:flex; align-items:center; gap:6px; margin-bottom:12px; }
+.team-name { flex:1; text-align:center; font-size:0.88rem; font-weight:600; }
+.team-input { flex:1; }
+.team-input input { width:100%; padding:6px 8px; background:var(--green-dark); border:1px solid var(--green-accent); border-radius:5px; color:var(--text); font-size:0.82rem; text-align:center; }
+.team-input input:disabled { opacity:0.4; cursor:not-allowed; }
+.vs { font-size:0.7rem; color:var(--green-light); font-weight:700; flex-shrink:0; }
+.score-row { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px; }
+.score-inp { width:42px; height:40px; background:rgba(245,197,66,0.1); border:1px solid var(--gold-dark); border-radius:6px; color:var(--gold); font-size:1.2rem; font-weight:700; text-align:center; font-family:'Bebas Neue',sans-serif; }
+.score-inp:focus { outline:none; border-color:var(--gold); }
+.score-inp:disabled { opacity:0.4; cursor:not-allowed; background:rgba(255,255,255,0.03); }
+.result-badge { text-align:center; font-size:0.7rem; padding:3px 10px; border-radius:4px; background:rgba(245,197,66,0.12); color:var(--gold); border:1px solid var(--gold-dark); margin-bottom:8px; }
+.locked-badge { text-align:center; font-size:0.68rem; padding:5px 8px; border-radius:4px; background:rgba(255,255,255,0.03); color:var(--text-muted); margin-top:4px; }
+
+.admin-bar { background:#0d2b14; border:1px solid var(--gold-dark); border-radius:8px; padding:12px 16px; margin-bottom:16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.admin-bar label { font-size:0.8rem; color:var(--gold); font-weight:600; white-space:nowrap; }
+.admin-bar input { flex:1; min-width:160px; padding:8px 12px; background:var(--green-dark); border:1px solid var(--green-accent); border-radius:6px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.85rem; }
+.admin-status { font-size:0.78rem; font-weight:600; white-space:nowrap; }
+.admin-status.ok { color:#4caf50; }
+.admin-status.ko { color:#ef9a9a; }
+
+.podium { display:flex; justify-content:center; align-items:flex-end; gap:10px; margin:20px 0 28px; }
+.podium-step { text-align:center; }
+.podium-col { border-radius:8px 8px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:10px 16px; min-width:80px; }
+.rank-1 .podium-col { height:110px; background:linear-gradient(180deg,#f5c542,#c49b10); }
+.rank-2 .podium-col { height:78px; background:linear-gradient(180deg,#cfd8dc,#90a4ae); }
+.rank-3 .podium-col { height:56px; background:linear-gradient(180deg,#cd7f32,#8d4e11); }
+.podium-name { font-weight:700; font-size:0.82rem; color:#071a0b; }
+.podium-pts { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; color:#071a0b; }
+.podium-emoji { font-size:1.4rem; margin-top:5px; }
+.rank-table tbody tr:nth-child(1) { background:rgba(245,197,66,0.08); }
+.rank-table tbody tr:nth-child(2) { background:rgba(207,216,220,0.05); }
+.rank-table tbody tr:nth-child(3) { background:rgba(205,127,50,0.05); }
+
+.legend-bar { display:flex; gap:16px; flex-wrap:wrap; font-size:0.74rem; margin-bottom:14px; color:var(--green-light); }
+.section-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--green-border); }
+
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.82); z-index:200; align-items:center; justify-content:center; padding:16px; }
+.modal-overlay.open { display:flex; }
+.modal { background:#0d2b14; border:1px solid var(--gold-dark); border-radius:12px; padding:22px; width:100%; max-width:520px; max-height:90vh; overflow-y:auto; }
+.modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.modal-header h3 { font-family:'Bebas Neue',sans-serif; color:var(--gold); font-size:1.3rem; letter-spacing:2px; }
+.btn-close { background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer; }
+.prono-row { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid rgba(27,94,32,0.4); }
+.prono-match { flex:1; font-size:0.78rem; }
+.prono-match strong { display:block; color:var(--text); }
+.prono-match small { color:var(--green-light); }
+.prono-inputs { display:flex; gap:5px; align-items:center; }
+.prono-inputs input { width:36px; height:32px; background:var(--green-dark); border:1px solid var(--green-accent); border-radius:4px; color:var(--gold); text-align:center; font-weight:700; font-size:0.95rem; }
+.prono-pts-badge { min-width:42px; text-align:right; font-family:'Bebas Neue',sans-serif; font-size:1rem; }
+.pts-3 { color:var(--gold); } .pts-1 { color:var(--green-light); } .pts-0 { color:#555; }
+.modal-footer { display:flex; gap:10px; margin-top:16px; justify-content:flex-end; }
+.btn-outline { padding:8px 16px; background:transparent; border:1px solid var(--green-border); border-radius:6px; color:var(--text-muted); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.82rem; }
+
+.loading { text-align:center; padding:40px; color:var(--green-light); }
+.spinner { display:inline-block; width:28px; height:28px; border:2px solid var(--green-border); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; margin-bottom:12px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.toast { position:fixed; bottom:20px; right:20px; padding:10px 18px; border-radius:8px; font-size:0.82rem; font-weight:600; z-index:300; opacity:0; transform:translateY(10px); transition:all 0.3s; pointer-events:none; max-width:300px; }
+.toast.ok { background:#2e7d32; color:#fff; }
+.toast.err { background:#c62828; color:#fff; }
+.toast.show { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚽ CDM 2026 — Pronostics</h1>
+  <div class="sub">Toulouse 31200 · Calendrier T2601</div>
+  <div class="tel">Valentin Immobilier · 06.42.76.28.45</div>
+</div>
+
+<div class="sync-bar">
+  <div class="sync-dot syncing" id="sync-dot"></div>
+  <span id="sync-label">Connexion à Google Sheets...</span>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('participants')">👥 Participants</button>
+  <button class="tab" onclick="switchTab('matches')">📅 Résultats</button>
+  <button class="tab" onclick="switchTab('classement')">🏆 Classement</button>
+</div>
+
+<!-- PARTICIPANTS -->
+<div class="panel active" id="panel-participants">
+  <div class="card">
+    <div class="card-title">+ Nouveau participant</div>
+    <div class="form-row">
+      <input type="text" id="inp-prenom" placeholder="Prénom *">
+      <input type="text" id="inp-nom" placeholder="Nom">
+      <input type="tel" id="inp-tel" placeholder="Téléphone">
+      <select id="inp-type">
+        <option value="proprio">Propriétaire</option>
+        <option value="locataire">Locataire</option>
+      </select>
+      <input type="text" id="inp-note" placeholder="Adresse / note">
+      <button class="btn-gold" id="btn-ajouter" onclick="addParticipant()">+ Ajouter</button>
+    </div>
+  </div>
+  <div class="legend-bar">
+    <span>🟡 Score exact = 3 pts</span>
+    <span>🟢 Bon vainqueur = 1 pt</span>
+  </div>
+  <div id="participants-loading" class="loading"><div class="spinner"></div><br>Chargement depuis Google Sheets...</div>
+  <div class="table-wrap" id="participants-table-wrap" style="display:none">
+    <table>
+      <thead><tr><th>#</th><th>Participant</th><th>Téléphone</th><th>Type</th><th>Note</th><th>Points</th><th>Actions</th></tr></thead>
+      <tbody id="tbody-participants"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- RÉSULTATS -->
+<div class="panel" id="panel-matches">
+  <div class="admin-bar">
+    <label>🔐 Accès admin :</label>
+    <input type="password" id="inp-admin-pw" placeholder="Mot de passe" oninput="checkAdmin()">
+    <span class="admin-status ko" id="admin-status">🔒 Verrouillé</span>
+  </div>
+  <div class="section-label">Phase de groupes</div>
+  <div class="matches-grid" id="grid-groupes"></div>
+  <div class="section-label" style="margin-top:24px">Phase finale</div>
+  <div class="matches-grid" id="grid-finale"></div>
+</div>
+
+<!-- CLASSEMENT -->
+<div class="panel" id="panel-classement">
+  <div id="podium-wrap"></div>
+  <div class="table-wrap">
+    <table class="rank-table">
+      <thead><tr><th>Rang</th><th>Participant</th><th>Type</th><th>Téléphone</th><th>Total pts</th><th>Scores exacts</th><th>Bons vainqueurs</th></tr></thead>
+      <tbody id="tbody-classement"><tr><td colspan="7" class="empty-state">Chargement...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Pronostics</h3>
+      <button class="btn-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-content"></div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal()">Annuler</button>
+      <button class="btn-gold" onclick="savePronostics()">✓ Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbyvf4CiCvNi-aPb1pY2xbS7OSRdLojH4CRPZNS5bcPb9tDpagXRAOvV7QD4wNZKiy5BQA/exec';
+const ADMIN_PW = 'Valentin2026';
+
+const GROUPES = [
+  { id:'m1', date:'13 Juin', heure:'00:00', eq1:'🇧🇷 BRA', eq2:'🇲🇦 MAR', phase:'Groupe' },
+  { id:'m2', date:'16 Juin', heure:'21:00', eq1:'🇫🇷 FRA', eq2:'🇸🇳 SEN', phase:'Groupe' },
+  { id:'m3', date:'20 Juin', heure:'03:00', eq1:'🇧🇷 BRA', eq2:'🇭🇹 HAI', phase:'Groupe' },
+  { id:'m4', date:'22 Juin', heure:'23:00', eq1:'🇫🇷 FRA', eq2:'🇮🇶 IRAK', phase:'Groupe' },
+  { id:'m5', date:'24 Juin', heure:'00:00', eq1:'🏴󠁧󠁢󠁳󠁣󠁴󠁿 SCO', eq2:'🇧🇷 BRA', phase:'Groupe' },
+  { id:'m6', date:'26 Juin', heure:'21:00', eq1:'🇳🇴 NOR', eq2:'🇫🇷 FRA', phase:'Groupe' },
+];
+const FINALE_SLOTS = [
+  { id:'f1',  date:'28 Juin', heure:'03:00', phase:'1/8 finale' },
+  { id:'f2',  date:'29 Juin', heure:'19:00', phase:'1/8 finale' },
+  { id:'f3',  date:'29 Juin', heure:'22:30', phase:'1/8 finale' },
+  { id:'f4',  date:'30 Juin', heure:'03:00', phase:'1/8 finale' },
+  { id:'f5',  date:'30 Juin', heure:'19:00', phase:'1/8 finale' },
+  { id:'f6',  date:'30 Juin', heure:'23:00', phase:'1/8 finale' },
+  { id:'f7',  date:'01 Juil', heure:'18:00', phase:'1/8 finale' },
+  { id:'f8',  date:'01 Juil', heure:'19:00', phase:'1/8 finale' },
+  { id:'f9',  date:'01 Juil', heure:'22:00', phase:'1/8 finale' },
+  { id:'f10', date:'02 Juil', heure:'02:00', phase:'1/8 finale' },
+  { id:'f11', date:'02 Juil', heure:'21:00', phase:'1/8 finale' },
+  { id:'f12', date:'03 Juil', heure:'05:00', phase:'1/8 finale' },
+  { id:'f13', date:'03 Juil', heure:'20:00', phase:'1/8 finale' },
+  { id:'f14', date:'04 Juil', heure:'00:00', phase:'1/8 finale' },
+  { id:'f15', date:'04 Juil', heure:'03:30', phase:'1/8 finale' },
+  { id:'f16', date:'04 Juil', heure:'19:00', phase:'1/8 finale' },
+  { id:'q1',  date:'04 Juil', heure:'23:00', phase:'Quart de finale' },
+  { id:'q2',  date:'05 Juil', heure:'22:00', phase:'Quart de finale' },
+  { id:'q3',  date:'06 Juil', heure:'02:00', phase:'Quart de finale' },
+  { id:'q4',  date:'06 Juil', heure:'21:00', phase:'Quart de finale' },
+  { id:'q5',  date:'07 Juil', heure:'02:00', phase:'Quart de finale' },
+  { id:'q6',  date:'07 Juil', heure:'18:00', phase:'Quart de finale' },
+  { id:'q7',  date:'07 Juil', heure:'22:00', phase:'Quart de finale' },
+  { id:'q8',  date:'09 Juil', heure:'22:00', phase:'Quart de finale' },
+  { id:'s1',  date:'10 Juil', heure:'21:00', phase:'Demi-finale' },
+  { id:'s2',  date:'11 Juil', heure:'23:00', phase:'Demi-finale' },
+  { id:'s3',  date:'12 Juil', heure:'03:00', phase:'Demi-finale' },
+  { id:'fin', date:'14 Juil', heure:'21:00', phase:'⭐ FINALE' },
+  { id:'fin2',date:'15 Juil', heure:'21:00', phase:'3e place' },
+  { id:'sup', date:'19 Juil', heure:'21:00', phase:'⭐ SUPER FINALE' },
+];
+const ALL_MATCHES = [...GROUPES, ...FINALE_SLOTS];
+
+let participants = [];
+let matchData = {};
+let currentPid = null;
+let isAdmin = false;
+let isSaving = false;
+
+// ===== SYNC =====
+function setSyncStatus(state, label) {
+  var dot = document.getElementById('sync-dot');
+  dot.className = 'sync-dot' + (state !== 'ok' ? ' ' + state : '');
+  document.getElementById('sync-label').textContent = label;
+}
+
+async function apiCall(action, extra) {
+  extra = extra || {};
+  setSyncStatus('syncing', 'Synchronisation...');
+  try {
+    var body = JSON.stringify(Object.assign({ action: action }, extra));
+    var res = await fetch(API_URL, {
+      method: 'POST',
+      body: body,
+      headers: { 'Content-Type': 'text/plain' }
+    });
+    var text = await res.text();
+    var data = JSON.parse(text);
+    if (data.error) throw new Error(data.error);
+    setSyncStatus('ok', 'Connecté à Google Sheets ✓');
+    return data;
+  } catch(e) {
+    setSyncStatus('error', 'Erreur : ' + e.message);
+    toast('❌ ' + e.message, 'err');
+    return null;
+  }
+}
+
+async function loadAll() {
+  var data = await apiCall('getAll');
+  if (data) {
+    participants = data.participants || [];
+    matchData = data.matches || {};
+  }
+  document.getElementById('participants-loading').style.display = 'none';
+  document.getElementById('participants-table-wrap').style.display = '';
+  renderParticipants();
+  renderMatches();
+}
+
+// ===== ADMIN =====
+function checkAdmin() {
+  var pw = document.getElementById('inp-admin-pw').value;
+  isAdmin = (pw === ADMIN_PW);
+  var status = document.getElementById('admin-status');
+  if (isAdmin) {
+    status.textContent = '✅ Mode admin activé';
+    status.className = 'admin-status ok';
+  } else {
+    status.textContent = '🔒 Verrouillé';
+    status.className = 'admin-status ko';
+  }
+  renderMatches();
+}
+
+// ===== TOAST =====
+function toast(msg, type) {
+  type = type || 'ok';
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + type + ' show';
+  setTimeout(function() { el.classList.remove('show'); }, 3000);
+}
+
+// ===== TABS =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  var tabs = ['participants', 'matches', 'classement'];
+  var idx = tabs.indexOf(tab);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (tab === 'classement') renderClassement();
+  if (tab === 'matches') renderMatches();
+}
+
+// ===== POINTS =====
+function calcPronoPoints(pid, mid) {
+  var p = participants.find(function(x) { return x.id === pid; });
+  var pr = p && p.pronos && p.pronos[mid];
+  var res = matchData[mid];
+  if (!pr || !res || res.s1 == null || res.s2 == null || res.s1 === '' || res.s2 === '') return -1;
+  var pe1 = parseInt(pr.s1), pe2 = parseInt(pr.s2);
+  var re1 = parseInt(res.s1), re2 = parseInt(res.s2);
+  if (isNaN(pe1)||isNaN(pe2)||isNaN(re1)||isNaN(re2)) return -1;
+  if (pe1 === re1 && pe2 === re2) return 3;
+  var pw = pe1 > pe2 ? 1 : pe1 < pe2 ? 2 : 0;
+  var rw = re1 > re2 ? 1 : re1 < re2 ? 2 : 0;
+  return pw === rw ? 1 : 0;
+}
+
+function calcTotal(pid) {
+  var total = 0, exact = 0, vainqueur = 0;
+  ALL_MATCHES.forEach(function(m) {
+    var pts = calcPronoPoints(pid, m.id);
+    if (pts === 3) { total += 3; exact++; }
+    else if (pts === 1) { total += 1; vainqueur++; }
+  });
+  return { total: total, exact: exact, vainqueur: vainqueur };
+}
+
+// ===== PARTICIPANTS =====
+async function addParticipant() {
+  var prenom = document.getElementById('inp-prenom').value.trim();
+  if (!prenom) { alert('Le prénom est obligatoire.'); return; }
+  var btn = document.getElementById('btn-ajouter');
+  btn.disabled = true; btn.textContent = '⏳...';
+  participants.push({
+    id: Date.now(),
+    prenom: prenom,
+    nom: document.getElementById('inp-nom').value.trim(),
+    tel: document.getElementById('inp-tel').value.trim(),
+    type: document.getElementById('inp-type').value,
+    note: document.getElementById('inp-note').value.trim(),
+    pronos: {}
+  });
+  ['inp-prenom','inp-nom','inp-tel','inp-note'].forEach(function(id) { document.getElementById(id).value = ''; });
+  var ok = await apiCall('saveParticipants', { participants: participants });
+  btn.disabled = false; btn.textContent = '+ Ajouter';
+  if (ok) { renderParticipants(); toast('✓ Participant sauvegardé !'); }
+}
+
+async function deleteParticipant(pid) {
+  if (!confirm('Supprimer ce participant ?')) return;
+  participants = participants.filter(function(p) { return p.id !== pid; });
+  var ok = await apiCall('saveParticipants', { participants: participants });
+  if (ok) { renderParticipants(); toast('Participant supprimé'); }
+}
+
+function renderParticipants() {
+  var tbody = document.getElementById('tbody-participants');
+  if (!participants.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Aucun participant — ajoutez-en ci-dessus</td></tr>';
+    return;
+  }
+  tbody.innerHTML = participants.map(function(p, i) {
+    var t = calcTotal(p.id);
+    var cnt = Object.keys(p.pronos || {}).length;
+    return '<tr>'
+      + '<td style="color:var(--gold);font-weight:700;font-family:\'Bebas Neue\',sans-serif;font-size:1.1rem">' + (i+1) + '</td>'
+      + '<td style="font-weight:600">' + p.prenom + ' ' + p.nom + '</td>'
+      + '<td style="font-size:0.8rem;color:var(--text-muted)">' + p.tel + '</td>'
+      + '<td><span class="tag ' + p.type + '">' + p.type + '</span></td>'
+      + '<td style="font-size:0.78rem;color:var(--text-muted)">' + p.note + '</td>'
+      + '<td><span class="pts-big">' + t.total + '</span> <small style="color:var(--text-muted);font-size:0.68rem">(' + cnt + ' pronos)</small></td>'
+      + '<td style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">'
+      + '<button class="btn-green" onclick="openModal(' + p.id + ')">✏️ Pronos</button>'
+      + '<button class="btn-red" onclick="deleteParticipant(' + p.id + ')">✕</button>'
+      + '</td></tr>';
+  }).join('');
+}
+
+// ===== MATCHS =====
+function renderMatches() {
+  renderMatchGrid('grid-groupes', GROUPES);
+  renderMatchGrid('grid-finale', FINALE_SLOTS);
+}
+
+function renderMatchGrid(gridId, matches) {
+  document.getElementById(gridId).innerHTML = matches.map(function(m) {
+    var d = matchData[m.id] || {};
+    var hasResult = d.s1 != null && d.s2 != null && d.s1 !== '' && d.s2 !== '';
+    var isFinale = !GROUPES.find(function(g) { return g.id === m.id; });
+    var eq1 = isFinale ? (d.eq1 || '') : m.eq1;
+    var eq2 = isFinale ? (d.eq2 || '') : m.eq2;
+    var dis = isAdmin ? '' : 'disabled';
+
+    var teamsHTML = isFinale
+      ? '<div class="teams-row">'
+        + '<div class="team-input"><input type="text" placeholder="Équipe 1" value="' + eq1 + '" id="eq1_' + m.id + '" ' + dis + '></div>'
+        + '<div class="vs">VS</div>'
+        + '<div class="team-input"><input type="text" placeholder="Équipe 2" value="' + eq2 + '" id="eq2_' + m.id + '" ' + dis + '></div>'
+        + '</div>'
+      : '<div class="teams-row">'
+        + '<div class="team-name">' + eq1 + '</div>'
+        + '<div class="vs">VS</div>'
+        + '<div class="team-name">' + eq2 + '</div>'
+        + '</div>';
+
+    var btnHTML = isAdmin
+      ? '<button class="btn-green" style="width:100%;padding:8px;margin-top:4px" onclick="saveResult(\'' + m.id + '\')">✓ Enregistrer</button>'
+      : '<div class="locked-badge">🔒 Réservé à l\'admin</div>';
+
+    return '<div class="match-card ' + (hasResult ? 'has-result' : '') + '">'
+      + '<div class="match-meta"><span>' + m.date + ' · ' + m.heure + '</span><span class="match-phase">' + m.phase + '</span></div>'
+      + teamsHTML
+      + (hasResult ? '<div class="result-badge">✓ Score : ' + d.s1 + ' - ' + d.s2 + '</div>' : '')
+      + '<div class="score-row">'
+      + '<input class="score-inp" type="number" min="0" max="30" id="s1_' + m.id + '" value="' + (d.s1 != null ? d.s1 : '') + '" placeholder="0" ' + dis + '>'
+      + '<span style="color:var(--green-light);font-weight:700">—</span>'
+      + '<input class="score-inp" type="number" min="0" max="30" id="s2_' + m.id + '" value="' + (d.s2 != null ? d.s2 : '') + '" placeholder="0" ' + dis + '>'
+      + '</div>'
+      + btnHTML
+      + '</div>';
+  }).join('');
+}
+
+async function saveResult(mid) {
+  if (!isAdmin) { toast('🔒 Mot de passe admin requis', 'err'); return; }
+  var s1 = document.getElementById('s1_' + mid) ? document.getElementById('s1_' + mid).value : '';
+  var s2 = document.getElementById('s2_' + mid) ? document.getElementById('s2_' + mid).value : '';
+  if (s1 === '' || s2 === '') { alert('Entrez les deux scores.'); return; }
+  if (!matchData[mid]) matchData[mid] = {};
+  matchData[mid].s1 = s1;
+  matchData[mid].s2 = s2;
+  var eq1el = document.getElementById('eq1_' + mid);
+  var eq2el = document.getElementById('eq2_' + mid);
+  if (eq1el) matchData[mid].eq1 = eq1el.value;
+  if (eq2el) matchData[mid].eq2 = eq2el.value;
+  var ok = await apiCall('saveMatches', { matches: matchData, password: ADMIN_PW });
+  if (ok) {
+    renderMatches();
+    renderParticipants();
+    toast('✓ Résultat enregistré dans Google Sheets !');
+  }
+}
+
+// ===== MODAL =====
+function openModal(pid) {
+  currentPid = pid;
+  var p = participants.find(function(x) { return x.id === pid; });
+  document.getElementById('modal-title').textContent = p.prenom + ' ' + p.nom;
+  document.getElementById('modal-content').innerHTML = ALL_MATCHES.map(function(m) {
+    var pr = (p.pronos && p.pronos[m.id]) || {};
+    var d = matchData[m.id] || {};
+    var eq1 = m.eq1 || d.eq1 || '?';
+    var eq2 = m.eq2 || d.eq2 || '?';
+    var pts = calcPronoPoints(pid, m.id);
+    var ptsHTML = pts === 3 ? '<span class="prono-pts-badge pts-3">🟡3pts</span>'
+      : pts === 1 ? '<span class="prono-pts-badge pts-1">🟢1pt</span>'
+      : pts === 0 ? '<span class="prono-pts-badge pts-0">0pt</span>' : '';
+    return '<div class="prono-row">'
+      + '<div class="prono-match">'
+      + '<small>' + m.date + ' · <span style="color:var(--gold);font-size:0.65rem">' + m.phase + '</span></small>'
+      + '<strong>' + eq1 + ' vs ' + eq2 + '</strong>'
+      + '</div>'
+      + '<div class="prono-inputs">'
+      + '<input type="number" min="0" max="30" id="p_' + m.id + '_1" value="' + (pr.s1 != null ? pr.s1 : '') + '" placeholder="0">'
+      + '<span style="color:var(--green-light)">-</span>'
+      + '<input type="number" min="0" max="30" id="p_' + m.id + '_2" value="' + (pr.s2 != null ? pr.s2 : '') + '" placeholder="0">'
+      + '</div>'
+      + ptsHTML
+      + '</div>';
+  }).join('');
+  document.getElementById('modal').classList.add('open');
+}
+
+async function savePronostics() {
+  var p = participants.find(function(x) { return x.id === currentPid; });
+  if (!p.pronos) p.pronos = {};
+  ALL_MATCHES.forEach(function(m) {
+    var el1 = document.getElementById('p_' + m.id + '_1');
+    var el2 = document.getElementById('p_' + m.id + '_2');
+    if (el1 && el2 && el1.value !== '' && el2.value !== '') {
+      p.pronos[m.id] = { s1: el1.value, s2: el2.value };
+    }
+  });
+  var ok = await apiCall('saveParticipants', { participants: participants });
+  if (ok) { closeModal(); renderParticipants(); toast('✓ Pronostics sauvegardés !'); }
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  currentPid = null;
+}
+
+// ===== CLASSEMENT =====
+function renderClassement() {
+  var sorted = participants.map(function(p) {
+    var t = calcTotal(p.id);
+    return Object.assign({}, p, t);
+  }).sort(function(a, b) { return b.total - a.total || b.exact - a.exact; });
+
+  var pw = document.getElementById('podium-wrap');
+  if (sorted.length >= 2) {
+    var order = sorted.length >= 3 ? [sorted[1], sorted[0], sorted[2]] : [null, sorted[0], sorted[1]];
+    var cls = ['rank-2','rank-1','rank-3'], emojis = ['🥈','🥇','🥉'];
+    pw.innerHTML = '<div class="podium">' + order.map(function(p, i) {
+      if (!p) return '';
+      return '<div class="podium-step ' + cls[i] + '">'
+        + '<div class="podium-col">'
+        + '<div class="podium-name">' + p.prenom + '</div>'
+        + '<div class="podium-pts">' + p.total + 'pts</div>'
+        + '</div>'
+        + '<div class="podium-emoji">' + emojis[i] + '</div>'
+        + '</div>';
+    }).join('') + '</div>';
+  } else { pw.innerHTML = ''; }
+
+  var tbody = document.getElementById('tbody-classement');
+  if (!sorted.length) { tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Aucun participant</td></tr>'; return; }
+  tbody.innerHTML = sorted.map(function(p, i) {
+    return '<tr>'
+      + '<td style="font-family:\'Bebas Neue\',sans-serif;font-size:1.3rem;color:var(--gold)">' + (i+1) + '</td>'
+      + '<td style="font-weight:600">' + p.prenom + ' ' + p.nom + '</td>'
+      + '<td><span class="tag ' + p.type + '">' + p.type + '</span></td>'
+      + '<td style="font-size:0.8rem;color:var(--text-muted)">' + p.tel + '</td>'
+      + '<td class="pts-big">' + p.total + '</td>'
+      + '<td style="text-align:center;color:var(--gold)">' + p.exact + '</td>'
+      + '<td style="text-align:center;color:var(--green-light)">' + p.vainqueur + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+loadAll();
+</script>
+</body>
+</html>
