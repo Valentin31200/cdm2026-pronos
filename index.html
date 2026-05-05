@@ -1,5 +1,1041 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=CDM2026_V9.html">
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CDM 2026 · Pronostics · Toulouse 31200</title>
-</head><body></body></html>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grass:#2f6b1e;--grass2:#3a7f26;--grass3:#224f16;
+  --gold:#f5c518;--gold2:#d4a017;--gold3:#ffe566;
+  --silver:#bfd0d8;--bronze:#c07840;
+  --glass:rgba(255,255,255,0.07);--glass2:rgba(255,255,255,0.12);
+  --border:rgba(255,255,255,0.13);--border-g:rgba(245,197,24,0.38);
+  --night:rgba(0,0,0,0.65);--night2:rgba(0,0,0,0.42);--night3:rgba(0,0,0,0.24);
+  --text:#f0f4f0;--dim:rgba(240,244,240,0.55);--faint:rgba(240,244,240,0.28);
+  --red:#e04040;--ok:#3cb86a;
+  --r:14px;--rs:8px;
+  --sh:0 8px 32px rgba(0,0,0,0.45);--sh-g:0 0 28px rgba(245,197,24,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--grass3);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* ===== BACKGROUND ===== */
+.bg{position:fixed;inset:0;z-index:0;
+  background:
+    linear-gradient(175deg,#224f16 0%,#2f6b1e 30%,#3a7f26 55%,#2f6b1e 80%,#1e4410 100%);
+}
+/* Lignes de gazon subtiles */
+.bg::before{content:'';position:fixed;inset:0;z-index:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent 79px,rgba(0,0,0,0.06) 79px,rgba(0,0,0,0.06) 80px),
+             repeating-linear-gradient(0deg,transparent 0,transparent 59px,rgba(255,255,255,0.025) 59px,rgba(255,255,255,0.025) 60px);
+}
+/* Lumière centrale stadium */
+.bg::after{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 75% 55% at 50% 38%,rgba(255,255,255,0.055) 0%,transparent 70%),
+             radial-gradient(ellipse 100% 30% at 50% 100%,rgba(0,0,0,0.35) 0%,transparent 100%);
+}
+/* Skyline */
+.sky{position:fixed;bottom:0;left:0;right:0;height:190px;z-index:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 190'%3E%3Cpath fill='rgba(0,0,0,0.18)' d='M0,190V135l25,0V108l8,0V90l6,0V74l8,0V90l6,0V108l18,0V135l30,0V110l12,0V88l9,0V68l7,0V52l5,0V38l7,0V52l5,0V68l7,0V88l9,0V110l18,0V135l35,0V112l10,0V88l8,0V65l6,0V48l5,0V32l8,0V48l5,0V65l6,0V88l8,0V112l14,0V135l30,0V115l14,0V90l10,0V68l7,0V50l5,0V34l8,0V50l5,0V68l7,0V90l10,0V115l18,0V135l35,0V108l12,0V84l9,0V62l6,0V44l5,0V28l8,0V44l5,0V62l6,0V84l9,0V108l16,0V135l30,0V110l10,0V88l8,0V65l6,0V48l8,0V65l6,0V88l8,0V110l14,0V135l32,0V115l12,0V90l10,0V68l7,0V50l5,0V34l8,0V50l5,0V68l7,0V90l10,0V115l18,0V135l35,0V110l12,0V86l9,0V64l6,0V46l5,0V30l8,0V46l5,0V64l6,0V86l9,0V110l16,0V135l30,0V112l10,0V88l8,0V66l6,0V50l8,0V66l6,0V88l8,0V112l14,0V135l28,0V115l14,0V90l10,0V68l7,0V50l5,0V36l8,0V50l5,0V68l7,0V90l10,0V115l18,0V135 L1440,135 L1440,190 Z'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size:100% 100%;
+}
+.z1{position:relative;z-index:1;}
+
+/* ===== LOGIN ===== */
+.ls{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;padding:16px;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);}
+.lb{
+  background:linear-gradient(150deg,rgba(34,64,18,0.97) 0%,rgba(18,40,10,0.99) 100%);
+  border:1.5px solid var(--border-g);border-radius:20px;
+  padding:32px 28px;width:100%;max-width:420px;
+  box-shadow:var(--sh),var(--sh-g);
+  animation:pop .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
+.l-ico{font-size:2.6rem;display:block;text-align:center;margin-bottom:6px;}
+.l-title{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:6px;color:var(--gold);text-align:center;line-height:1;margin-bottom:3px;}
+.l-sub{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:22px;}
+.l-hr{height:1px;background:linear-gradient(90deg,transparent,var(--gold2),transparent);margin-bottom:20px;}
+.l-tabs{display:flex;gap:6px;margin-bottom:16px;background:rgba(0,0,0,.28);border-radius:10px;padding:4px;}
+.l-tab{flex:1;padding:8px;border-radius:7px;border:none;background:transparent;color:var(--dim);
+  font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.l-tab.on{background:var(--gold);color:#1a3808;box-shadow:0 2px 10px rgba(245,197,24,.3);}
+.l-lbl{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:5px;font-weight:600;}
+.l-in{width:100%;padding:11px 15px;background:rgba(0,0,0,.3);border:1.5px solid var(--border);border-radius:var(--rs);
+  color:var(--text);font-family:'DM Sans',sans-serif;font-size:.9rem;letter-spacing:.5px;margin-bottom:11px;transition:all .2s;}
+.l-in:focus{outline:none;border-color:var(--gold);background:rgba(0,0,0,.45);box-shadow:0 0 0 3px rgba(245,197,24,.1);}
+.l-in::placeholder{color:var(--faint);}
+.l-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:var(--rs);
+  color:#1a3808;font-family:'DM Sans',sans-serif;font-weight:800;font-size:.92rem;letter-spacing:1.5px;
+  cursor:pointer;transition:all .2s;margin-top:4px;box-shadow:0 4px 16px rgba(245,197,24,.28);}
+.l-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(245,197,24,.42);}
+.l-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+/* RGPD CONSENT */
+.l-rgpd{margin:12px 0;background:rgba(0,0,0,.22);border:1px solid var(--border);border-radius:var(--rs);padding:12px;}
+.l-check{display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:.72rem;color:var(--dim);line-height:1.45;margin-bottom:6px;}
+.l-check:last-child{margin-bottom:0;}
+.l-check input[type=checkbox]{width:15px;height:15px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:1px;}
+.l-check a{color:var(--gold);text-decoration:underline;}
+.l-err{color:#ff7070;font-size:.76rem;margin-top:9px;display:none;padding:8px 12px;background:rgba(220,60,60,.12);border:1px solid rgba(220,60,60,.25);border-radius:6px;}
+.l-foot{margin-top:14px;font-size:.6rem;color:var(--faint);text-align:center;line-height:1.55;}
+
+/* ===== RGPD BANNER ===== */
+.rgpd-banner{
+  background:linear-gradient(135deg,rgba(0,30,60,.88),rgba(0,20,40,.95));
+  border:1.5px solid var(--border-g);border-radius:var(--r);
+  padding:18px 20px;margin-bottom:16px;
+  font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.75);
+}
+.rgpd-banner h4{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1rem;letter-spacing:3px;margin-bottom:8px;}
+.rgpd-banner ul{padding-left:16px;margin-top:4px;}
+.rgpd-banner li{margin-bottom:3px;}
+.rgpd-banner a{color:var(--gold);}
+
+/* ===== HEADER ===== */
+.header{background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.38));backdrop-filter:blur(18px);
+  border-bottom:2px solid var(--gold2);position:sticky;top:0;z-index:200;}
+.hi{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;gap:10px;flex-wrap:wrap;}
+.h-brand .h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.1rem,3.5vw,1.75rem);letter-spacing:5px;color:var(--gold);line-height:1;}
+.h-brand .h-sub{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-top:1px;}
+.h-badge{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a3808;font-family:'DM Sans',sans-serif;
+  font-weight:800;font-size:.55rem;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:4px;
+  text-align:center;line-height:1.5;flex-shrink:0;display:none;}
+.h-user{display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.3);border:1.5px solid var(--border);
+  border-radius:24px;padding:4px 12px 4px 4px;cursor:pointer;transition:all .2s;}
+.h-user:hover{border-color:var(--border-g);}
+.h-av{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:.82rem;color:#1a3808;flex-shrink:0;}
+.h-nm{font-size:.73rem;font-weight:700;color:rgba(255,255,255,.88);}
+.sync{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.22);border:1px solid var(--border);
+  border-radius:20px;padding:4px 10px;font-size:.6rem;color:var(--dim);flex-shrink:0;}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--ok);flex-shrink:0;}
+.dot.s{background:var(--gold);animation:blink .9s infinite;}
+.dot.e{background:var(--red);}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ===== TABS ===== */
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;background:rgba(0,0,0,.32);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);position:sticky;top:58px;z-index:199;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:1;min-width:74px;padding:11px 7px;border:none;background:transparent;color:var(--dim);
+  font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab.on{color:var(--gold);border-bottom-color:var(--gold);background:rgba(245,197,24,.06);}
+.adm{display:none;}.adm.v{display:block;}
+
+/* ===== PANELS ===== */
+.panel{display:none;padding:14px 13px 80px;animation:fin .22s ease both;}
+.panel.on{display:block;}
+@keyframes fin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.app{position:relative;z-index:1;max-width:1080px;margin:0 auto;}
+
+/* ===== CARD ===== */
+.card{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:var(--r);padding:17px;margin-bottom:13px;}
+.ct{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1rem;letter-spacing:3px;margin-bottom:13px;display:flex;align-items:center;gap:9px;}
+.ct::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent);}
+
+/* ===== FORM ===== */
+.fr{display:flex;gap:7px;flex-wrap:wrap;}
+.fr input,.fr select{flex:1;min-width:110px;padding:8px 11px;background:rgba(0,0,0,.26);border:1px solid var(--border);
+  border-radius:var(--rs);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.82rem;transition:all .2s;}
+.fr input:focus,.fr select:focus{outline:none;border-color:var(--gold);}
+.fr input::placeholder{color:var(--faint);}
+.fr select option{background:#1e4010;}
+.btn{padding:9px 17px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:var(--rs);
+  color:#1a3808;font-family:'DM Sans',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.5px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(245,197,24,.3);}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.btn-g{padding:5px 10px;background:var(--glass);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:.7rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:600;}
+.btn-g:hover{border-color:var(--border-g);color:var(--gold);}
+.btn-d{padding:5px 10px;background:rgba(224,64,64,.15);border:1px solid rgba(224,64,64,.3);border-radius:5px;color:#ff7878;font-size:.7rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:600;}
+.btn-d:hover{background:rgba(224,64,64,.28);}
+
+/* ===== TABLE ===== */
+.tw{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:.79rem;min-width:460px;}
+thead tr{background:rgba(0,0,0,.48);}
+th{padding:10px 12px;text-align:left;font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-size:.6rem;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.06);transition:background .14s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.04);}
+td{padding:10px 12px;vertical-align:middle;}
+.av{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:#1a3808;flex-shrink:0;margin-right:8px;}
+.pts{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:var(--gold);line-height:1;}
+.es{text-align:center;color:var(--faint);padding:36px;font-size:.74rem;letter-spacing:2px;text-transform:uppercase;}
+.rn{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--gold);}
+
+/* ===== SECTION LABEL ===== */
+.sl{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:4px;color:var(--gold);margin-bottom:9px;display:flex;align-items:center;gap:9px;}
+.sl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(245,197,24,.5),transparent);}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:.69rem;margin-bottom:12px;color:var(--dim);font-weight:600;}
+
+/* ===== MES PRONOS ===== */
+.ph{background:linear-gradient(135deg,rgba(0,0,0,.52),rgba(0,0,0,.32));border:1px solid var(--border-g);
+  border-radius:var(--r);padding:15px 18px;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:3px;color:var(--gold);}
+.ph-name{font-size:.67rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:2px;}
+.ph-pts{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;color:var(--gold);line-height:1;text-align:right;}
+.ph-plab{font-size:.57rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);text-align:right;}
+
+/* RANG BADGE */
+.rbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:20px;
+  font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;margin-top:5px;}
+.rb1{background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.45);color:var(--gold);}
+.rb2{background:rgba(191,208,216,.12);border:1px solid rgba(191,208,216,.38);color:var(--silver);}
+.rb3{background:rgba(192,120,64,.12);border:1px solid rgba(192,120,64,.38);color:var(--bronze);}
+.rb4{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--dim);}
+
+.pmc{background:rgba(0,0,0,.26);border:1px solid var(--border);border-radius:var(--r);
+  padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;transition:all .2s;}
+.pmc:hover{border-color:rgba(255,255,255,.2);}
+.pmc.lk{opacity:.65;border-color:rgba(255,255,255,.08);background:rgba(0,0,0,.18);}
+.pmc.hr{border-color:rgba(245,197,24,.28);background:rgba(245,197,24,.04);}
+.pmc-t{flex:1;min-width:110px;}
+.pmc-n{font-weight:700;font-size:.86rem;}
+.pmc-m{font-size:.61rem;color:var(--faint);margin-top:1px;letter-spacing:.3px;}
+.ins{width:42px;height:38px;background:rgba(245,197,24,.08);border:2px solid rgba(245,197,24,.24);
+  border-radius:7px;color:var(--gold);font-size:1.1rem;font-weight:700;text-align:center;
+  font-family:'Bebas Neue',sans-serif;transition:all .2s;}
+.ins:focus{outline:none;border-color:var(--gold);background:rgba(245,197,24,.16);}
+.ins:disabled{opacity:.28;cursor:not-allowed;background:rgba(0,0,0,.14);border-color:rgba(255,255,255,.09);}
+.sep{color:var(--faint);font-weight:700;font-size:.88rem;}
+.ppb{min-width:46px;text-align:right;font-family:'Bebas Neue',sans-serif;font-size:.93rem;letter-spacing:1px;}
+.p3{color:var(--gold);}.p1{color:#4dcc7a;}.p0{color:var(--faint);}
+.prs{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:rgba(255,255,255,.55);letter-spacing:1px;min-width:42px;text-align:center;}
+.ltag{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);border-radius:4px;
+  padding:1px 7px;font-size:.57rem;letter-spacing:1px;color:rgba(245,197,24,.75);text-transform:uppercase;font-weight:700;}
+.dtag{background:rgba(130,100,50,.15);border:1px solid rgba(130,100,50,.28);border-radius:4px;
+  padding:1px 7px;font-size:.57rem;letter-spacing:1px;color:rgba(200,150,80,.8);text-transform:uppercase;font-weight:700;}
+
+.sbar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent);
+  padding:14px;z-index:100;display:flex;justify-content:center;}
+.sbtn{padding:12px 38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:30px;
+  color:#1a3808;font-family:'DM Sans',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:1.5px;
+  cursor:pointer;box-shadow:0 4px 22px rgba(245,197,24,.42),0 0 44px rgba(245,197,24,.12);transition:all .2s;}
+.sbtn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(245,197,24,.55);}
+.sbtn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* ===== PODIUM 4 MARCHES ===== */
+.pod-wrap{display:flex;justify-content:center;align-items:flex-end;gap:7px;margin:18px 0 26px;padding:0 6px;}
+.pod-step{text-align:center;}
+.pod-col{border-radius:11px 11px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:10px 12px 9px;min-width:76px;position:relative;overflow:hidden;}
+.pod-col::before{content:'';position:absolute;inset:0;opacity:.1;background:white;}
+.pod-num{position:absolute;top:7px;left:50%;transform:translateX(-50%);
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;opacity:.55;}
+.r1 .pod-col{height:112px;background:linear-gradient(180deg,#f5c518,#c49b10);box-shadow:0 -5px 22px rgba(245,197,24,.42);}
+.r1 .pod-num{color:#1a3808;}
+.r2 .pod-col{height:80px;background:linear-gradient(180deg,#c8d8e0,#88a8b8);}
+.r2 .pod-num{color:rgba(0,0,0,.5);}
+.r3 .pod-col{height:60px;background:linear-gradient(180deg,#d09058,#8d5520);}
+.r3 .pod-num{color:rgba(0,0,0,.5);}
+.r4 .pod-col{height:46px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07));border:1px solid var(--border);}
+.r4 .pod-num{color:rgba(255,255,255,.45);}
+.pod-name{font-family:'DM Sans',sans-serif;font-weight:800;font-size:.85rem;position:relative;line-height:1.1;}
+.r1 .pod-name,.r2 .pod-name,.r3 .pod-name{color:rgba(0,0,0,.72);}
+.r4 .pod-name{color:rgba(255,255,255,.65);}
+.pod-pts{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;position:relative;}
+.r1 .pod-pts,.r2 .pod-pts,.r3 .pod-pts{color:rgba(0,0,0,.58);}
+.r4 .pod-pts{color:rgba(255,255,255,.45);}
+.pod-lot{font-size:.55rem;font-weight:700;margin-top:2px;letter-spacing:.3px;position:relative;text-align:center;line-height:1.3;}
+.r1 .pod-lot,.r2 .pod-lot,.r3 .pod-lot{color:rgba(0,0,0,.58);}
+.r4 .pod-lot{color:rgba(255,255,255,.4);}
+.pod-emoji{font-size:1.4rem;margin-top:5px;}
+
+.rt tbody tr:nth-child(1){background:rgba(245,197,24,.08);}
+.rt tbody tr:nth-child(2){background:rgba(200,212,220,.05);}
+.rt tbody tr:nth-child(3){background:rgba(205,127,50,.05);}
+.rt tbody tr:nth-child(4){background:rgba(255,255,255,.03);}
+.me-tag{font-size:.58rem;color:var(--gold);font-weight:700;letter-spacing:.5px;background:rgba(245,197,24,.1);padding:1px 6px;border-radius:3px;}
+
+/* ===== MATCHES ADMIN ===== */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:8px;}
+.mc{background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:var(--r);padding:11px;transition:transform .2s;}
+.mc:hover{transform:translateY(-2px);}
+.mc.hr{border-color:rgba(245,197,24,.4);}
+.mc-m{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;flex-wrap:wrap;gap:2px;}
+.mc-d{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);}
+.mc-p{font-size:.57rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;font-weight:700;}
+.tr{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:8px;}
+.tb{flex:1;text-align:center;}
+.tf{font-size:1.4rem;line-height:1;}
+.tc{font-size:.66rem;font-weight:700;color:rgba(255,255,255,.75);margin-top:1px;}
+.ti{flex:1;}
+.ti input{width:100%;padding:4px 5px;background:rgba(0,0,0,.26);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:.73rem;text-align:center;}
+.ti input:disabled{opacity:.3;cursor:not-allowed;}
+.vs{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:4px;padding:2px 5px;
+  font-family:'Bebas Neue',sans-serif;font-size:.63rem;color:var(--faint);letter-spacing:1px;flex-shrink:0;}
+.rb2m{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:2px;color:var(--gold);
+  background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.28);border-radius:4px;padding:2px 7px;margin-bottom:5px;}
+.sr{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:6px;}
+.si{width:40px;height:37px;background:rgba(245,197,24,.08);border:2px solid rgba(245,197,24,.24);border-radius:6px;
+  color:var(--gold);font-size:1.1rem;font-weight:700;text-align:center;font-family:'Bebas Neue',sans-serif;transition:all .2s;}
+.si:focus{outline:none;border-color:var(--gold);}
+.si:disabled{opacity:.22;cursor:not-allowed;background:transparent;border-color:var(--border);}
+.ss{color:var(--faint);font-size:.88rem;font-weight:700;}
+.bsr{width:100%;padding:6px;background:rgba(245,197,24,.13);border:1px solid rgba(245,197,24,.28);border-radius:var(--rs);
+  color:var(--gold);font-weight:700;font-size:.7rem;letter-spacing:1.5px;cursor:pointer;transition:all .2s;text-transform:uppercase;font-family:'DM Sans',sans-serif;}
+.bsr:hover{background:rgba(245,197,24,.22);}
+.bdel{width:100%;padding:5px;background:rgba(224,64,64,.1);border:1px solid rgba(224,64,64,.24);border-radius:var(--rs);
+  color:rgba(255,120,120,.85);font-size:.63rem;letter-spacing:1px;cursor:pointer;transition:all .2s;text-transform:uppercase;font-family:'DM Sans',sans-serif;margin-top:4px;font-weight:600;}
+.bdel:hover{background:rgba(224,64,64,.22);}
+.lk-n{text-align:center;font-size:.58rem;letter-spacing:1px;color:var(--faint);text-transform:uppercase;margin-top:4px;padding:3px;border:1px dashed rgba(255,255,255,.09);border-radius:4px;}
+
+/* ===== ADMIN BAR ===== */
+.abar{background:rgba(0,0,0,.36);border:1px solid var(--border-g);border-radius:var(--r);padding:9px 13px;margin-bottom:13px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.abar label{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);white-space:nowrap;font-weight:700;}
+.abar input{flex:1;min-width:130px;padding:7px 11px;background:rgba(0,0,0,.36);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.82rem;}
+.ast{font-size:.73rem;font-weight:700;letter-spacing:1px;white-space:nowrap;}
+.ast.ok{color:var(--ok);}.ast.ko{color:var(--faint);}
+
+/* ===== PARTENAIRES ===== */
+.pb{background:linear-gradient(135deg,rgba(0,0,0,.48),rgba(18,48,10,.48));border:1px solid var(--border-g);
+  border-radius:var(--r);padding:15px 18px;margin-bottom:16px;text-align:center;}
+.pb-t{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:3px;}
+.pb-s{font-size:.68rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:11px;}
+.pc{background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:var(--r);padding:16px;
+  display:flex;flex-direction:column;gap:6px;transition:all .2s;position:relative;overflow:hidden;}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold2),transparent);opacity:0;transition:opacity .2s;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.32);border-color:rgba(255,255,255,.2);}
+.pc:hover::before{opacity:1;}
+.pc-i{font-size:1.75rem;line-height:1;}
+.pc-n{font-family:'DM Sans',sans-serif;font-weight:800;font-size:.9rem;color:var(--gold);}
+.pc-c{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--faint);font-weight:600;}
+.pc-o{background:linear-gradient(135deg,rgba(245,197,24,.13),rgba(245,197,24,.07));border:1px solid rgba(245,197,24,.26);
+  border-radius:7px;padding:7px 11px;font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--gold);text-align:center;}
+.pc-d{font-size:.72rem;color:rgba(255,255,255,.52);line-height:1.42;}
+.pc-contact{font-size:.68rem;color:rgba(255,255,255,.45);line-height:1.5;margin-top:2px;}
+.pc-contact a{color:rgba(245,197,24,.7);text-decoration:none;}
+.pc-contact a:hover{color:var(--gold);}
+
+/* ===== MODAL ===== */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);z-index:500;align-items:center;justify-content:center;padding:14px;}
+.mo.open{display:flex;}
+.md{background:linear-gradient(145deg,#1e4a10,#0e2808);border:1.5px solid var(--border-g);border-radius:var(--r);
+  padding:20px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:var(--sh),var(--sh-g);}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;padding-bottom:9px;border-bottom:1px solid var(--border-g);}
+.mh h3{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1.15rem;letter-spacing:3px;}
+.mc2{background:none;border:none;color:var(--dim);font-size:1.25rem;cursor:pointer;transition:color .2s;}
+.mc2:hover{color:var(--text);}
+.mrow{display:flex;align-items:center;gap:7px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.mrow:last-child{border-bottom:none;}
+.mfoot{display:flex;gap:7px;margin-top:13px;justify-content:flex-end;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);}
+.btn-o{padding:8px 14px;background:transparent;border:1px solid var(--border);border-radius:var(--rs);color:var(--dim);
+  cursor:pointer;font-size:.8rem;font-weight:700;letter-spacing:1px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-o:hover{border-color:var(--text);color:var(--text);}
+
+/* ===== RGPD MODAL ===== */
+.rmo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:950;align-items:center;justify-content:center;padding:16px;}
+.rmo.open{display:flex;}
+.rmd{background:linear-gradient(145deg,rgba(0,20,40,.97),rgba(0,10,25,.99));border:1.5px solid rgba(60,120,200,.35);border-radius:20px;
+  padding:28px;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+.rmd h2{font-family:'Bebas Neue',sans-serif;color:#5eb8ff;font-size:1.5rem;letter-spacing:4px;margin-bottom:12px;}
+.rmd h3{font-family:'DM Sans',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:#5eb8ff;margin:14px 0 6px;}
+.rmd p,.rmd li{font-size:.76rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:4px;}
+.rmd ul{padding-left:16px;}
+.rmd a{color:#5eb8ff;}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:78px;right:15px;padding:10px 16px;border-radius:10px;font-family:'DM Sans',sans-serif;
+  font-size:.8rem;font-weight:700;z-index:600;opacity:0;transform:translateY(12px);
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;max-width:255px;}
+.toast.ok{background:#1a5228;color:white;border:1px solid var(--ok);}
+.toast.err{background:#521a1a;color:white;border:1px solid var(--red);}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* ===== LOADING ===== */
+.loading{text-align:center;padding:38px;color:var(--dim);font-size:.73rem;letter-spacing:2px;text-transform:uppercase;}
+.sp{display:inline-block;width:24px;height:24px;border:2px solid rgba(255,255,255,.12);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:9px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:560px){
+  .hi{padding:7px 10px;}.h-badge{display:none!important;}
+  .panel{padding:10px 8px 72px;}
+  .mg{grid-template-columns:1fr 1fr;gap:6px;}.mc{padding:9px;}
+  .pg{grid-template-columns:1fr;}
+  .pod-col{min-width:60px;}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="sky"></div>
+
+<!-- ===== LOGIN ===== -->
+<div class="ls" id="ls">
+  <div class="lb">
+    <span class="l-ico">⚽</span>
+    <div class="l-title">CDM 2026</div>
+    <div class="l-sub">Toulouse 31200 · Pronostics</div>
+    <div class="l-hr"></div>
+    <div class="l-tabs">
+      <button class="l-tab on" id="lm-h" onclick="setMode('h')">👤 Participant</button>
+      <button class="l-tab" id="lm-a" onclick="setMode('a')">🔐 Admin</button>
+    </div>
+    <!-- HABITANT -->
+    <div id="fh">
+      <label class="l-lbl">Numéro calendrier</label>
+      <input class="l-in" type="text" id="lc" placeholder="Ex : T2601" maxlength="20" style="text-transform:uppercase">
+      <label class="l-lbl">Prénom *</label>
+      <input class="l-in" type="text" id="lp" placeholder="Votre prénom">
+      <label class="l-lbl">Nom</label>
+      <input class="l-in" type="text" id="ln" placeholder="Nom (optionnel)">
+      <label class="l-lbl">Email</label>
+      <input class="l-in" type="email" id="lem" placeholder="votre@email.com">
+      <label class="l-lbl">Téléphone</label>
+      <input class="l-in" type="tel" id="ltel" placeholder="06 XX XX XX XX">
+      <!-- CONSENTEMENT RGPD -->
+      <div class="l-rgpd">
+        <label class="l-check">
+          <input type="checkbox" id="ck1" required>
+          <span>J'accepte que mes données soient utilisées pour gérer ma participation et me contacter si je gagne un lot. <a href="#" onclick="openRgpd(event)">Politique de confidentialité</a></span>
+        </label>
+        <label class="l-check">
+          <input type="checkbox" id="ck2">
+          <span>J'accepte de recevoir des informations sur les biens immobiliers et services de Valentin Immobilier (optionnel).</span>
+        </label>
+      </div>
+      <button class="l-btn" id="lbtn" onclick="loginH()">Accéder à mes pronostics →</button>
+    </div>
+    <!-- ADMIN -->
+    <div id="fa" style="display:none">
+      <label class="l-lbl">Mot de passe</label>
+      <input class="l-in" type="password" id="lapw" placeholder="••••••••">
+      <button class="l-btn" onclick="loginA()">Connexion admin →</button>
+    </div>
+    <div class="l-err" id="lerr"></div>
+    <div class="l-foot">Valentin Immobilier · IAD France · 06.42.76.28.45<br>Données sécurisées · <a href="#" onclick="openRgpd(event)" style="color:var(--gold)">Confidentialité</a></div>
+  </div>
+</div>
+
+<!-- ===== RGPD MODAL ===== -->
+<div class="rmo" id="rmo">
+  <div class="rmd">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h2>🔒 Politique de confidentialité</h2>
+      <button class="mc2" onclick="closeRgpd()">✕</button>
+    </div>
+    <h3>Qui collecte vos données ?</h3>
+    <p>Valentin BRULÉ — Mandataire immobilier IAD France — Toulouse (31200) — 06.42.76.28.45</p>
+    <h3>Quelles données sont collectées ?</h3>
+    <ul>
+      <li>Prénom, nom, adresse email, numéro de téléphone</li>
+      <li>Vos pronostics de matchs de la Coupe du Monde 2026</li>
+      <li>Le numéro de votre calendrier</li>
+    </ul>
+    <h3>Pourquoi ces données ?</h3>
+    <ul>
+      <li><strong>Finalité principale :</strong> Gérer votre participation au concours de pronostics et vous contacter si vous remportez un lot</li>
+      <li><strong>Finalité secondaire (si consentement) :</strong> Vous informer sur des biens immobiliers et services (prospection commerciale)</li>
+    </ul>
+    <h3>Base légale</h3>
+    <p>Article 6(1)(a) RGPD — Consentement explicite recueilli lors de l'inscription.</p>
+    <h3>Durée de conservation</h3>
+    <p>3 mois après la fin du concours (fin juillet 2026) pour la gestion des lots. Si vous avez consenti à la prospection commerciale, vos données sont conservées 3 ans.</p>
+    <h3>Vos droits</h3>
+    <ul>
+      <li><strong>Accès, rectification, suppression :</strong> À tout moment par email</li>
+      <li><strong>Opposition à la prospection :</strong> À tout moment, sans justification</li>
+      <li><strong>Portabilité</strong> de vos données</li>
+      <li><strong>Réclamation :</strong> CNIL — <a href="https://www.cnil.fr" target="_blank" style="color:#5eb8ff">www.cnil.fr</a></li>
+    </ul>
+    <p>Contact DPO : <strong>06.42.76.28.45</strong></p>
+    <h3>⚖️ Cadre légal du concours</h3>
+    <ul>
+      <li>Concours gratuit sans obligation d'achat — conforme à l'article L320-1 du Code de la sécurité intérieure</li>
+      <li>Pas de loterie payante — aucun achat requis pour participer</li>
+      <li>Règlement disponible sur demande auprès de Valentin Immobilier</li>
+      <li>Ouvert aux majeurs résidant dans le quartier Pierre et Marie Curie, Toulouse 31200</li>
+      <li>Durée : juin-juillet 2026 (matchs de la Coupe du Monde FIFA)</li>
+    </ul>
+    <div style="margin-top:18px;text-align:right">
+      <button class="btn" onclick="closeRgpd()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<div class="header z1" id="mh" style="display:none">
+  <div class="hi">
+    <div class="h-brand">
+      <div class="h-title">⚽ CDM 2026 · Pronostics</div>
+      <div class="h-sub">Toulouse 31200</div>
+    </div>
+    <div class="h-badge" id="hbadge">Valentin<br>Immobilier IAD<br>06.42.76.28.45</div>
+    <div class="h-user" onclick="logout()" title="Se déconnecter">
+      <div class="h-av" id="hav">?</div>
+      <div class="h-nm" id="hnm">...</div>
+    </div>
+    <div class="sync"><div class="dot s" id="dot"></div><span id="slbl">...</span></div>
+  </div>
+</div>
+
+<div class="tabs z1" id="tabs" style="display:none">
+  <button class="tab on" onclick="sw('pronos')">🎯 Mes Pronos</button>
+  <button class="tab" onclick="sw('classement')">🏆 Classement</button>
+  <button class="tab" onclick="sw('partenaires')">🎁 Partenaires</button>
+  <button class="tab adm" id="tab-p" onclick="sw('participants')">👥 Participants</button>
+  <button class="tab adm" id="tab-r" onclick="sw('resultats')">📅 Résultats</button>
+</div>
+
+<div class="app z1">
+
+<!-- MES PRONOS -->
+<div class="panel on" id="panel-pronos">
+  <div id="lp2" class="loading"><div class="sp"></div><br>Chargement...</div>
+  <div id="cp" style="display:none"></div>
+</div>
+
+<!-- CLASSEMENT -->
+<div class="panel" id="panel-classement">
+  <div id="pod"></div>
+  <div class="tw">
+    <table class="rt">
+      <thead><tr><th>Rang</th><th>Participant</th><th>Pts</th><th>Exacts</th><th>Vainq.</th></tr></thead>
+      <tbody id="tbody-cl"><tr><td colspan="5" class="es">Chargement...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PARTENAIRES -->
+<div class="panel" id="panel-partenaires">
+  <div class="pb">
+    <div class="pb-t">🎁 Vos avantages partenaires</div>
+    <div class="pb-s">Offres exclusives · Présentation du calendrier T2601 obligatoire</div>
+  </div>
+  <div class="pg">
+    <div class="pc"><div class="pc-i">🏠</div><div class="pc-n">Valentin Immobilier</div><div class="pc-c">IAD France · Conseiller de proximité</div><div class="pc-o">ESTIMATION OFFERTE</div><div class="pc-d">+100 projets accompagnés à Toulouse. Achat ou vente ? On en parle !</div><div class="pc-contact">📞 <a href="tel:0642762845">06.42.76.28.45</a><br>📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">💪</div><div class="pc-n">SWED Sport Santé</div><div class="pc-c">Sport adapté · Massage bien-être</div><div class="pc-o">1ER COACHING OFFERT</div><div class="pc-d">Experte en sport adapté et massage bien-être. Pour garder la forme et rester actif !</div><div class="pc-contact">📞 <a href="tel:0652968882">06.52.96.88.82</a><br>📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🍽️</div><div class="pc-n">La Perle des Antilles</div><div class="pc-c">Restaurant antillais</div><div class="pc-o">-10%</div><div class="pc-d">Saveurs des Antilles au cœur de Toulouse. Sur présentation de votre calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🔧</div><div class="pc-n">Mister Garage</div><div class="pc-c">Garage automobile</div><div class="pc-o">-15%</div><div class="pc-d">Entretien et réparation de votre véhicule. Réduction sur présentation du calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">📱</div><div class="pc-n">Smart Repair</div><div class="pc-c">Réparation téléphone & PC</div><div class="pc-o">-10%</div><div class="pc-d">Réparation rapide. Écran cassé, batterie, etc. Sur présentation du calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🍕</div><div class="pc-n">Pizzeria Pomozza</div><div class="pc-c">Pizzeria</div><div class="pc-o">-10%</div><div class="pc-d">Pizzas artisanales. Réduction sur commande sur présentation du calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">✂️</div><div class="pc-n">Sonia'ttitude</div><div class="pc-c">Coiffeur</div><div class="pc-o">-10%</div><div class="pc-d">Votre coiffeur de proximité. Réduction sur prestation avec le calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🍞</div><div class="pc-n">Boulangerie Pierre & Marie Curie</div><div class="pc-c">Boulangerie</div><div class="pc-o">-10%</div><div class="pc-d">Pain frais et viennoiseries. Réduction quotidienne sur présentation du calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🔨</div><div class="pc-n">SOS Rénovation</div><div class="pc-c">Travaux & rénovation</div><div class="pc-o">-20%</div><div class="pc-d">Tous travaux de rénovation. Devis gratuit + réduction exclusive calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🛠️</div><div class="pc-n">Util Service</div><div class="pc-c">Services à domicile</div><div class="pc-o">-20%</div><div class="pc-d">Services à domicile. Réduction sur tous vos services avec le calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🏸</div><div class="pc-n">Smash Pickleball</div><div class="pc-c">Sport · Pickleball</div><div class="pc-o">1 PARTIE OFFERTE</div><div class="pc-d">Découvrez le pickleball ! Une partie offerte pour les détenteurs du calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+    <div class="pc"><div class="pc-i">🇧🇷</div><div class="pc-n">Caymmi Maison</div><div class="pc-c">Traiteur brésilien</div><div class="pc-o">1 ACHETÉE = 1 OFFERTE</div><div class="pc-d">Spécialités brésiliennes. 1 commande achetée = 1 offerte avec le calendrier.</div><div class="pc-contact">📍 Toulouse 31200</div></div>
+  </div>
+</div>
+
+<!-- PARTICIPANTS ADMIN -->
+<div class="panel" id="panel-participants">
+  <div class="card">
+    <div class="ct">+ Nouveau participant</div>
+    <div class="fr">
+      <input type="text" id="pp" placeholder="Prénom *">
+      <input type="text" id="pn" placeholder="Nom">
+      <input type="email" id="pem" placeholder="Email">
+      <input type="tel" id="ptel" placeholder="Téléphone">
+      <input type="text" id="pno" placeholder="Note / adresse">
+      <button class="btn" id="btnadd" onclick="addP()">+ Ajouter</button>
+    </div>
+  </div>
+  <div class="lg"><span>🟡 Score exact = 3 pts</span><span>🟢 Bon vainqueur = 1 pt</span><span>⏰ Pronostics bloqués après date du match ET si score saisi</span></div>
+  <div id="lp3" class="loading"><div class="sp"></div><br>Chargement...</div>
+  <div class="tw" id="wt" style="display:none">
+    <table><thead><tr><th>#</th><th>Participant</th><th>Email</th><th>Tél</th><th>Note</th><th>Pts</th><th>Actions</th></tr></thead>
+    <tbody id="tbody-p"></tbody></table>
+  </div>
+</div>
+
+<!-- RÉSULTATS ADMIN -->
+<div class="panel" id="panel-resultats">
+  <div class="abar">
+    <label>🔐 Admin :</label>
+    <input type="password" id="iaconf" placeholder="Mot de passe" oninput="chkA()">
+    <span class="ast ko" id="ast">🔒 Verrouillé</span>
+  </div>
+  <div class="sl">Phase de groupes</div>
+  <div class="mg" id="gg"></div>
+  <div class="sl" style="margin-top:16px">Phase finale</div>
+  <div class="mg" id="gf"></div>
+</div>
+
+</div><!-- /app -->
+
+<div class="sbar" id="sbar" style="display:none">
+  <button class="sbtn" id="sbtn" onclick="savePronos()">✓ Sauvegarder mes pronostics</button>
+</div>
+
+<!-- MODAL ADMIN PRONOS -->
+<div class="mo" id="modal">
+  <div class="md">
+    <div class="mh"><h3 id="mt">Pronostics</h3><button class="mc2" onclick="closeM()">✕</button></div>
+    <div id="mb"></div>
+    <div class="mfoot"><button class="btn-o" onclick="closeM()">Annuler</button><button class="btn" onclick="saveAP()">✓ Enregistrer</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API='https://script.google.com/macros/s/AKfycbyvf4CiCvNi-aPb1pY2xbS7OSRdLojH4CRPZNS5bcPb9tDpagXRAOvV7QD4wNZKiy5BQA/exec';
+const APW='Valentin2026';
+const CACHE_TTL=30000;
+const AVC=['#f5c518','#4dcc7a','#42a5f5','#ef5350','#ab47bc','#26c6da','#ff7043','#8d6e63','#66bb6a','#ffa726'];
+function avc(i){return AVC[i%AVC.length];}
+
+// LOTS
+const LOTS={
+  1:{label:'🥇 1er',lot:'Maillot FRA ou BRA\nau choix',short:'Maillot au choix',cls:'rb1'},
+  2:{label:'🥈 2ème',lot:'Massage 80€',short:'Massage 80€',cls:'rb2'},
+  3:{label:'🥉 3ème',lot:'Panier gourmand 40€',short:'Panier 40€',cls:'rb3'},
+  4:{label:'4ème',lot:'Casquette officielle',short:'Casquette',cls:'rb4'},
+};
+
+// DATES matchs — DOUBLE verrouillage : date passée OU score saisi
+const MD={
+  m1:'2026-06-13',m2:'2026-06-16',m3:'2026-06-20',m4:'2026-06-22',m5:'2026-06-24',m6:'2026-06-26',
+  f1:'2026-06-28',f2:'2026-06-29',f3:'2026-06-29',f4:'2026-06-30',f5:'2026-06-30',f6:'2026-06-30',
+  f7:'2026-07-01',f8:'2026-07-01',f9:'2026-07-01',f10:'2026-07-02',f11:'2026-07-02',f12:'2026-07-03',
+  f13:'2026-07-03',f14:'2026-07-04',f15:'2026-07-04',f16:'2026-07-04',
+  q1:'2026-07-04',q2:'2026-07-05',q3:'2026-07-06',q4:'2026-07-06',q5:'2026-07-07',q6:'2026-07-07',q7:'2026-07-07',q8:'2026-07-09',
+  s1:'2026-07-10',s2:'2026-07-11',s3:'2026-07-12',
+  fin:'2026-07-14',fin2:'2026-07-15',sup:'2026-07-19'
+};
+
+// Verrouillé si date passée OU score saisi
+function isLocked(mid){
+  var d=MD[mid];
+  var datePast=d?new Date(d)<new Date(new Date().toDateString()):false;
+  var r=matchData[mid];
+  var hasScore=!!(r&&r.s1!=null&&r.s1!==''&&r.s2!=null&&r.s2!=='');
+  return datePast||hasScore;
+}
+function hasScore(mid){var r=matchData[mid];return !!(r&&r.s1!=null&&r.s1!==''&&r.s2!=null&&r.s2!=='');}
+function isPast(mid){var d=MD[mid];return d?new Date(d)<new Date(new Date().toDateString()):false;}
+
+const GRP=[
+  {id:'m1',date:'13 Juin',h:'00:00',f1:'🇧🇷',c1:'BRA',f2:'🇲🇦',c2:'MAR',ph:'Groupe'},
+  {id:'m2',date:'16 Juin',h:'21:00',f1:'🇫🇷',c1:'FRA',f2:'🇸🇳',c2:'SEN',ph:'Groupe'},
+  {id:'m3',date:'20 Juin',h:'03:00',f1:'🇧🇷',c1:'BRA',f2:'🇭🇹',c2:'HAI',ph:'Groupe'},
+  {id:'m4',date:'22 Juin',h:'23:00',f1:'🇫🇷',c1:'FRA',f2:'🇮🇶',c2:'IRAK',ph:'Groupe'},
+  {id:'m5',date:'24 Juin',h:'00:00',f1:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',c1:'SCO',f2:'🇧🇷',c2:'BRA',ph:'Groupe'},
+  {id:'m6',date:'26 Juin',h:'21:00',f1:'🇳🇴',c1:'NOR',f2:'🇫🇷',c2:'FRA',ph:'Groupe'},
+];
+const FIN=[
+  {id:'f1',date:'28 Juin',h:'03:00',ph:'1/8'},{id:'f2',date:'29 Juin',h:'19:00',ph:'1/8'},
+  {id:'f3',date:'29 Juin',h:'22:30',ph:'1/8'},{id:'f4',date:'30 Juin',h:'03:00',ph:'1/8'},
+  {id:'f5',date:'30 Juin',h:'19:00',ph:'1/8'},{id:'f6',date:'30 Juin',h:'23:00',ph:'1/8'},
+  {id:'f7',date:'01 Juil',h:'18:00',ph:'1/8'},{id:'f8',date:'01 Juil',h:'19:00',ph:'1/8'},
+  {id:'f9',date:'01 Juil',h:'22:00',ph:'1/8'},{id:'f10',date:'02 Juil',h:'02:00',ph:'1/8'},
+  {id:'f11',date:'02 Juil',h:'21:00',ph:'1/8'},{id:'f12',date:'03 Juil',h:'05:00',ph:'1/8'},
+  {id:'f13',date:'03 Juil',h:'20:00',ph:'1/8'},{id:'f14',date:'04 Juil',h:'00:00',ph:'1/8'},
+  {id:'f15',date:'04 Juil',h:'03:30',ph:'1/8'},{id:'f16',date:'04 Juil',h:'19:00',ph:'1/8'},
+  {id:'q1',date:'04 Juil',h:'23:00',ph:'Quart'},{id:'q2',date:'05 Juil',h:'22:00',ph:'Quart'},
+  {id:'q3',date:'06 Juil',h:'02:00',ph:'Quart'},{id:'q4',date:'06 Juil',h:'21:00',ph:'Quart'},
+  {id:'q5',date:'07 Juil',h:'02:00',ph:'Quart'},{id:'q6',date:'07 Juil',h:'18:00',ph:'Quart'},
+  {id:'q7',date:'07 Juil',h:'22:00',ph:'Quart'},{id:'q8',date:'09 Juil',h:'22:00',ph:'Quart'},
+  {id:'s1',date:'10 Juil',h:'21:00',ph:'Demi'},{id:'s2',date:'11 Juil',h:'23:00',ph:'Demi'},{id:'s3',date:'12 Juil',h:'03:00',ph:'Demi'},
+  {id:'fin',date:'14 Juil',h:'21:00',ph:'⭐ FINALE'},{id:'fin2',date:'15 Juil',h:'21:00',ph:'3e place'},{id:'sup',date:'19 Juil',h:'21:00',ph:'⭐ SUPER FINALE'},
+];
+const ALL=[...GRP,...FIN];
+
+var participants=[],matchData={},user=null,curPid=null,adminOk=false,cacheT=0,cacheD=null;
+
+// RGPD
+function openRgpd(e){if(e)e.preventDefault();document.getElementById('rmo').classList.add('open');}
+function closeRgpd(){document.getElementById('rmo').classList.remove('open');}
+
+// LOGIN
+function setMode(m){
+  document.getElementById('lm-h').classList.toggle('on',m==='h');
+  document.getElementById('lm-a').classList.toggle('on',m==='a');
+  document.getElementById('fh').style.display=m==='h'?'':'none';
+  document.getElementById('fa').style.display=m==='a'?'':'none';
+  document.getElementById('lerr').style.display='none';
+}
+async function loginH(){
+  var prenom=document.getElementById('lp').value.trim();
+  if(!prenom){showErr('Veuillez saisir votre prénom.');return;}
+  if(!document.getElementById('ck1').checked){showErr('Vous devez accepter la politique de confidentialité pour participer.');return;}
+  var cal=document.getElementById('lc').value.trim().toUpperCase()||'?';
+  var nom=document.getElementById('ln').value.trim();
+  var email=document.getElementById('lem').value.trim();
+  var tel=document.getElementById('ltel').value.trim();
+  var promo=document.getElementById('ck2').checked;
+  var btn=document.getElementById('lbtn');
+  btn.disabled=true;btn.textContent='Connexion...';
+  document.getElementById('lerr').style.display='none';
+  await loadAll();
+  var ex=participants.find(function(p){return p.prenom.toLowerCase()===prenom.toLowerCase()&&(!nom||p.nom.toLowerCase()===nom.toLowerCase());});
+  if(ex){
+    // Mettre à jour email/tel si manquants
+    var changed=false;
+    if(email&&!ex.email){ex.email=email;changed=true;}
+    if(tel&&!ex.tel){ex.tel=tel;changed=true;}
+    if(changed) apiCall('saveParticipants',{participants:participants});
+    user={id:ex.id,prenom:ex.prenom,nom:ex.nom,isAdmin:false};
+  }else{
+    var np={id:Date.now(),prenom:prenom,nom:nom,email:email,tel:tel,note:'Cal:'+cal,promo:promo,pronos:{}};
+    participants.push(np);
+    await apiCall('saveParticipants',{participants:participants});
+    user={id:np.id,prenom:prenom,nom:nom,isAdmin:false};
+  }
+  btn.disabled=false;btn.textContent='Accéder à mes pronostics →';
+  enterApp();
+}
+async function loginA(){
+  var pw=document.getElementById('lapw').value;
+  if(pw!==APW){showErr('Mot de passe incorrect.');return;}
+  await loadAll();
+  user={id:null,prenom:'Valentin',nom:'',isAdmin:true};
+  enterApp();
+}
+function showErr(msg){var e=document.getElementById('lerr');e.textContent=msg;e.style.display='block';}
+
+function enterApp(){
+  document.getElementById('ls').style.display='none';
+  document.getElementById('mh').style.display='';
+  document.getElementById('tabs').style.display='';
+  var idx=participants.findIndex(function(p){return p.id===user.id;});
+  var col=avc(idx>=0?idx:0);
+  document.getElementById('hav').textContent=user.prenom[0].toUpperCase();
+  document.getElementById('hav').style.background=col;
+  document.getElementById('hnm').textContent=user.prenom+(user.isAdmin?' (Admin)':'');
+  if(user.isAdmin){
+    document.getElementById('tab-p').classList.add('v');
+    document.getElementById('tab-r').classList.add('v');
+    document.getElementById('hbadge').style.display='';
+    renderP();renderR();
+  }
+  renderPronos();renderCl();
+}
+function logout(){
+  if(!confirm('Se déconnecter ?')) return;
+  user=null;adminOk=false;
+  document.getElementById('ls').style.display='';
+  document.getElementById('mh').style.display='none';
+  document.getElementById('tabs').style.display='none';
+  document.getElementById('sbar').style.display='none';
+  document.getElementById('tab-p').classList.remove('v');
+  document.getElementById('tab-r').classList.remove('v');
+  document.getElementById('hbadge').style.display='none';
+  ['lc','lp','ln','lem','ltel','lapw'].forEach(function(i){document.getElementById(i).value='';});
+  document.getElementById('ck1').checked=false;document.getElementById('ck2').checked=false;
+  setMode('h');sw('pronos',true);
+}
+
+// API + CACHE
+function setSS(s,l){
+  var d=document.getElementById('dot');
+  d.className='dot'+(s!=='ok'?' '+s:'');
+  document.getElementById('slbl').textContent=l;
+}
+async function apiCall(action,extra){
+  extra=extra||{};setSS('s','Sync...');
+  try{
+    var r=await fetch(API,{method:'POST',body:JSON.stringify(Object.assign({action:action},extra)),headers:{'Content-Type':'text/plain'}});
+    var data=JSON.parse(await r.text());
+    if(data.error) throw new Error(data.error);
+    setSS('ok','✓ Connecté');return data;
+  }catch(e){setSS('e','Erreur');toast('❌ '+e.message,'err');return null;}
+}
+async function loadAll(force){
+  var now=Date.now();
+  if(!force&&cacheD&&(now-cacheT)<CACHE_TTL){participants=cacheD.participants||[];matchData=cacheD.matches||{};return;}
+  setSS('s','Chargement...');
+  var data=await apiCall('getAll');
+  if(data){participants=data.participants||[];matchData=data.matches||{};cacheD={participants:participants,matches:matchData};cacheT=Date.now();}
+}
+
+// POINTS
+function cPts(pid,mid){
+  var p=participants.find(function(x){return x.id===pid;});
+  var pr=p&&p.pronos&&p.pronos[mid];
+  var res=matchData[mid];
+  if(!pr||!res||res.s1==null||res.s1===''||res.s2==null||res.s2==='') return -1;
+  var pe1=parseInt(pr.s1),pe2=parseInt(pr.s2),re1=parseInt(res.s1),re2=parseInt(res.s2);
+  if(isNaN(pe1)||isNaN(pe2)||isNaN(re1)||isNaN(re2)) return -1;
+  if(pe1===re1&&pe2===re2) return 3;
+  var pw=pe1>pe2?1:pe1<pe2?2:0,rw=re1>re2?1:re1<re2?2:0;
+  return pw===rw?1:0;
+}
+function cTotal(pid){
+  var t=0,e=0,v=0;
+  ALL.forEach(function(m){var p=cPts(pid,m.id);if(p===3){t+=3;e++;}else if(p===1){t+=1;v++;}});
+  return{total:t,exact:e,vainqueur:v};
+}
+function getRang(pid){
+  var s=participants.map(function(p){var t=cTotal(p.id);return{id:p.id,total:t.total,exact:t.exact};}).sort(function(a,b){return b.total-a.total||b.exact-a.exact;});
+  return s.findIndex(function(x){return x.id===pid;})+1;
+}
+
+// MES PRONOS
+function renderPronos(){
+  if(!user) return;
+  document.getElementById('lp2').style.display='none';
+  document.getElementById('cp').style.display='';
+  document.getElementById('sbar').style.display=user.isAdmin?'none':'flex';
+  var p=participants.find(function(x){return x.id===user.id;});
+  var pronos=p?(p.pronos||{}):{};
+  var t=p?cTotal(p.id):{total:0,exact:0,vainqueur:0};
+  var rang=p?getRang(p.id):0;
+  var rbH='';
+  if(rang>=1&&rang<=4&&p){
+    var l=LOTS[rang];
+    rbH='<div style="margin-top:6px"><span class="rbadge '+l.cls+'">'+l.label+' · '+l.short+'</span></div>';
+  }
+  var h='<div class="ph">'
+    +'<div><div class="ph-title">🎯 Mes Pronostics</div>'
+    +'<div class="ph-name">'+(p?p.prenom+' '+p.nom:'')+'</div>'
+    +rbH+'</div>'
+    +'<div><div class="ph-pts">'+t.total+'</div><div class="ph-plab">points</div></div></div>';
+  h+='<div class="sl">Phase de groupes</div>';
+  GRP.forEach(function(m){h+=mkCard(m,pronos,p);});
+  h+='<div class="sl" style="margin-top:13px">Phase finale</div>';
+  FIN.forEach(function(m){h+=mkCard(m,pronos,p);});
+  document.getElementById('cp').innerHTML=h;
+}
+
+function mkCard(m,pronos,p){
+  var pr=pronos[m.id]||{};
+  var res=matchData[m.id]||{};
+  var lk=isLocked(m.id);
+  var hs=hasScore(m.id);
+  var dp=isPast(m.id);
+  var pt=p?cPts(p.id,m.id):-1;
+  var isFin=!GRP.find(function(g){return g.id===m.id;});
+  var eq1=isFin?(res.eq1||'À définir'):(m.f1+' '+m.c1);
+  var eq2=isFin?(res.eq2||'À définir'):(m.f2+' '+m.c2);
+  var ptH='';
+  if(pt===3) ptH='<span class="ppb p3">🟡 3pts</span>';
+  else if(pt===1) ptH='<span class="ppb p1">🟢 1pt</span>';
+  else if(pt===0) ptH='<span class="ppb p0">0pt</span>';
+  var rsH=hs?'<div class="prs">'+res.s1+'-'+res.s2+'</div>':'';
+  var lkH='';
+  if(hs) lkH='<span class="ltag">🔒 Score rentré</span>';
+  else if(dp) lkH='<span class="dtag">⏰ Match passé</span>';
+  return '<div class="pmc'+(lk?' lk':'')+(hs?' hr':'')+'">'
+    +'<div class="pmc-t"><div class="pmc-n">'+eq1+' <span style="color:var(--faint);font-weight:400">vs</span> '+eq2+'</div>'
+    +'<div class="pmc-m">'+m.date+' · '+m.h+' · '+m.ph+'</div></div>'
+    +'<div style="display:flex;align-items:center;gap:5px">'
+    +'<input class="ins" type="number" min="0" max="30" id="mp_'+m.id+'_1" value="'+(pr.s1!=null?pr.s1:'')+'" placeholder="0" '+(lk?'disabled':'')+'>'
+    +'<span class="sep">-</span>'
+    +'<input class="ins" type="number" min="0" max="30" id="mp_'+m.id+'_2" value="'+(pr.s2!=null?pr.s2:'')+'" placeholder="0" '+(lk?'disabled':'')+'>'
+    +'</div>'+rsH+ptH+lkH+'</div>';
+}
+
+async function savePronos(){
+  if(!user||user.isAdmin) return;
+  var p=participants.find(function(x){return x.id===user.id;});
+  if(!p) return;
+  var btn=document.getElementById('sbtn');
+  btn.disabled=true;btn.textContent='⏳ Sauvegarde...';
+  if(!p.pronos) p.pronos={};
+  var changed=false;
+  ALL.forEach(function(m){
+    if(isLocked(m.id)) return;
+    var e1=document.getElementById('mp_'+m.id+'_1');
+    var e2=document.getElementById('mp_'+m.id+'_2');
+    if(e1&&e2&&e1.value!==''&&e2.value!==''){p.pronos[m.id]={s1:e1.value,s2:e2.value};changed=true;}
+  });
+  if(changed){var ok=await apiCall('saveParticipants',{participants:participants});if(ok){cacheD=null;toast('✓ Pronostics sauvegardés !');}}
+  else toast('Aucun nouveau pronostic à enregistrer');
+  btn.disabled=false;btn.textContent='✓ Sauvegarder mes pronostics';
+}
+
+// ADMIN — PARTICIPANTS
+async function addP(){
+  var prenom=document.getElementById('pp').value.trim();
+  if(!prenom){alert('Prénom obligatoire.');return;}
+  var btn=document.getElementById('btnadd');btn.disabled=true;btn.textContent='⏳';
+  participants.push({id:Date.now(),prenom:prenom,nom:document.getElementById('pn').value.trim(),
+    email:document.getElementById('pem').value.trim(),tel:document.getElementById('ptel').value.trim(),
+    note:document.getElementById('pno').value.trim(),pronos:{}});
+  ['pp','pn','pem','ptel','pno'].forEach(function(i){document.getElementById(i).value='';});
+  var ok=await apiCall('saveParticipants',{participants:participants});
+  btn.disabled=false;btn.textContent='+ Ajouter';
+  if(ok){cacheD=null;renderP();toast('✓ Participant ajouté !');}
+}
+async function delP(pid){
+  if(!confirm('Supprimer ce participant ?')) return;
+  participants=participants.filter(function(p){return p.id!==pid;});
+  var ok=await apiCall('saveParticipants',{participants:participants});
+  if(ok){cacheD=null;renderP();toast('Supprimé');}
+}
+function renderP(){
+  document.getElementById('lp3').style.display='none';
+  document.getElementById('wt').style.display='';
+  var tbody=document.getElementById('tbody-p');
+  if(!participants.length){tbody.innerHTML='<tr><td colspan="7" class="es">Aucun participant</td></tr>';return;}
+  tbody.innerHTML=participants.map(function(p,i){
+    var t=cTotal(p.id);var cnt=Object.keys(p.pronos||{}).length;var col=avc(i);
+    return '<tr><td class="rn">'+(i+1)+'</td>'
+      +'<td><div style="display:flex;align-items:center"><div class="av" style="background:'+col+'">'+p.prenom[0].toUpperCase()+'</div>'
+      +'<div><div style="font-weight:700;font-size:.83rem">'+p.prenom+' '+p.nom+'</div>'
+      +'<div style="font-size:.58rem;color:var(--faint)">'+cnt+' prono'+(cnt>1?'s':'')+'</div></div></div></td>'
+      +'<td style="font-size:.72rem;color:var(--dim)">'+( p.email||'—')+'</td>'
+      +'<td style="font-size:.72rem;color:var(--dim)">'+(p.tel||'—')+'</td>'
+      +'<td style="font-size:.68rem;color:var(--faint)">'+( p.note||'')+'</td>'
+      +'<td class="pts">'+t.total+'</td>'
+      +'<td style="display:flex;gap:5px;align-items:center;flex-wrap:wrap">'
+      +'<button class="btn-g" onclick="openM('+p.id+')">✏️</button>'
+      +'<button class="btn-d" onclick="delP('+p.id+')">✕</button>'
+      +'</td></tr>';
+  }).join('');
+}
+
+// ADMIN — RÉSULTATS
+function chkA(){
+  var pw=document.getElementById('iaconf').value;
+  adminOk=(pw===APW);
+  var s=document.getElementById('ast');
+  s.textContent=adminOk?'✅ Autorisé':'🔒 Verrouillé';
+  s.className='ast '+(adminOk?'ok':'ko');
+  renderR();
+}
+function renderR(){renderGrid('gg',GRP);renderGrid('gf',FIN);}
+function renderGrid(id,matches){
+  document.getElementById(id).innerHTML=matches.map(function(m){
+    var d=matchData[m.id]||{};
+    var hs=hasScore(m.id);
+    var isFin=!GRP.find(function(g){return g.id===m.id;});
+    var dis=adminOk?'':'disabled';
+    var eq1=isFin?(d.eq1||''):m.f1+' '+m.c1;
+    var eq2=isFin?(d.eq2||''):m.f2+' '+m.c2;
+    var tH=isFin
+      ?'<div class="tr"><div class="ti"><input type="text" placeholder="Équipe 1" value="'+eq1+'" id="eq1_'+m.id+'" '+dis+'></div><div class="vs">VS</div><div class="ti"><input type="text" placeholder="Équipe 2" value="'+eq2+'" id="eq2_'+m.id+'" '+dis+'></div></div>'
+      :'<div class="tr"><div class="tb"><div class="tf">'+m.f1+'</div><div class="tc">'+m.c1+'</div></div><div class="vs">VS</div><div class="tb"><div class="tf">'+m.f2+'</div><div class="tc">'+m.c2+'</div></div></div>';
+    var saveB=adminOk?'<button class="bsr" onclick="saveR(\''+m.id+'\')">✓ Enregistrer</button>':'<div class="lk-n">🔒 Mot de passe requis</div>';
+    var delB=(adminOk&&hs)?'<button class="bdel" onclick="clearR(\''+m.id+'\')">✕ Effacer le score</button>':'';
+    return '<div class="mc'+(hs?' hr':'')+'">'
+      +'<div class="mc-m"><span class="mc-d">'+m.date+' · '+m.h+'</span><span class="mc-p">'+m.ph+'</span></div>'
+      +tH
+      +(hs?'<div class="rb2m">'+d.s1+' — '+d.s2+'</div>':'')
+      +'<div class="sr">'
+      +'<input class="si" type="number" min="0" max="30" id="s1_'+m.id+'" value="'+(d.s1!=null?d.s1:'')+'" placeholder="0" '+dis+'>'
+      +'<span class="ss">—</span>'
+      +'<input class="si" type="number" min="0" max="30" id="s2_'+m.id+'" value="'+(d.s2!=null?d.s2:'')+'" placeholder="0" '+dis+'>'
+      +'</div>'+saveB+delB+'</div>';
+  }).join('');
+}
+async function saveR(mid){
+  if(!adminOk){toast('🔒 Mot de passe requis','err');return;}
+  var s1=(document.getElementById('s1_'+mid)||{}).value;
+  var s2=(document.getElementById('s2_'+mid)||{}).value;
+  if(s1===''||s2===''){alert('Entrez les deux scores.');return;}
+  if(!matchData[mid]) matchData[mid]={};
+  matchData[mid].s1=s1;matchData[mid].s2=s2;
+  var e1=document.getElementById('eq1_'+mid),e2=document.getElementById('eq2_'+mid);
+  if(e1) matchData[mid].eq1=e1.value;
+  if(e2) matchData[mid].eq2=e2.value;
+  var ok=await apiCall('saveMatches',{matches:matchData,password:APW});
+  if(ok){cacheD=null;renderR();renderP();renderCl();toast('✓ Score enregistré !');}
+}
+async function clearR(mid){
+  if(!adminOk){toast('🔒 Mot de passe requis','err');return;}
+  if(!confirm('Effacer le score ? Les pronostics seront réouverts si la date n\'est pas encore passée.')) return;
+  if(matchData[mid]){matchData[mid].s1='';matchData[mid].s2='';}
+  var ok=await apiCall('saveMatches',{matches:matchData,password:APW});
+  if(ok){cacheD=null;renderR();renderP();renderCl();toast('Score effacé');}
+}
+
+// MODAL ADMIN PRONOS
+function openM(pid){
+  curPid=pid;
+  var p=participants.find(function(x){return x.id===pid;});
+  document.getElementById('mt').textContent=p.prenom+' '+p.nom;
+  document.getElementById('mb').innerHTML=ALL.map(function(m){
+    var pr=(p.pronos&&p.pronos[m.id])||{};
+    var d=matchData[m.id]||{};
+    var eq1=m.f1?m.f1+' '+m.c1:(d.eq1||'?');
+    var eq2=m.f2?m.f2+' '+m.c2:(d.eq2||'?');
+    var pt=cPts(pid,m.id);
+    var ptH=pt===3?'<span class="ppb p3">🟡3</span>':pt===1?'<span class="ppb p1">🟢1</span>':pt===0?'<span class="ppb p0">0</span>':'';
+    return '<div class="mrow">'
+      +'<div style="flex:1"><div style="font-weight:700;font-size:.83rem">'+eq1+' vs '+eq2+'</div>'
+      +'<div style="font-size:.6rem;color:var(--faint)">'+m.date+' · '+m.ph+'</div></div>'
+      +'<div style="display:flex;gap:5px;align-items:center">'
+      +'<input type="number" min="0" max="30" id="pa_'+m.id+'_1" value="'+(pr.s1!=null?pr.s1:'')+'" placeholder="0" style="width:34px;height:29px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:4px;color:var(--gold);text-align:center;font-weight:700;font-size:.88rem">'
+      +'<span style="color:var(--faint)">-</span>'
+      +'<input type="number" min="0" max="30" id="pa_'+m.id+'_2" value="'+(pr.s2!=null?pr.s2:'')+'" placeholder="0" style="width:34px;height:29px;background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:4px;color:var(--gold);text-align:center;font-weight:700;font-size:.88rem">'
+      +'</div>'+ptH+'</div>';
+  }).join('');
+  document.getElementById('modal').classList.add('open');
+}
+async function saveAP(){
+  var p=participants.find(function(x){return x.id===curPid;});
+  if(!p.pronos) p.pronos={};
+  ALL.forEach(function(m){
+    var e1=document.getElementById('pa_'+m.id+'_1'),e2=document.getElementById('pa_'+m.id+'_2');
+    if(e1&&e2&&e1.value!==''&&e2.value!=='') p.pronos[m.id]={s1:e1.value,s2:e2.value};
+  });
+  var ok=await apiCall('saveParticipants',{participants:participants});
+  if(ok){cacheD=null;closeM();renderP();toast('✓ Sauvegardé !');}
+}
+function closeM(){document.getElementById('modal').classList.remove('open');curPid=null;}
+
+// CLASSEMENT
+function renderCl(){
+  var sorted=participants.map(function(p){var t=cTotal(p.id);return Object.assign({},p,t);}).sort(function(a,b){return b.total-a.total||b.exact-a.exact;});
+  var pod=document.getElementById('pod');
+  if(sorted.length>=1){
+    var top=sorted.slice(0,Math.min(4,sorted.length));
+    // Ordre visuel : 2-1-3-4
+    var order=[];
+    if(top[1]) order.push({p:top[1],r:2});
+    if(top[0]) order.push({p:top[0],r:1});
+    if(top[2]) order.push({p:top[2],r:3});
+    if(top[3]) order.push({p:top[3],r:4});
+    var emojis={1:'🥇',2:'🥈',3:'🥉',4:'🏅'};
+    pod.innerHTML='<div class="pod-wrap">'+order.map(function(x){
+      var p=x.p,r=x.r,l=LOTS[r];
+      return '<div class="pod-step r'+r+'">'
+        +'<div class="pod-col">'
+        +'<div class="pod-num">'+r+'</div>'
+        +'<div class="pod-name">'+p.prenom+'</div>'
+        +'<div class="pod-pts">'+p.total+'pts</div>'
+        +'<div class="pod-lot">'+l.short+'</div>'
+        +'</div>'
+        +'<div class="pod-emoji">'+emojis[r]+'</div>'
+        +'</div>';
+    }).join('')+'</div>';
+  }else{pod.innerHTML='';}
+  var tbody=document.getElementById('tbody-cl');
+  if(!sorted.length){tbody.innerHTML='<tr><td colspan="5" class="es">Aucun participant</td></tr>';return;}
+  tbody.innerHTML=sorted.map(function(p,i){
+    var r=i+1,isMe=user&&p.id===user.id,col=avc(i);
+    var l=r<=4?LOTS[r]:null;
+    return '<tr style="'+(isMe?'outline:1px solid rgba(245,197,24,.28);':'')+(r===1?'background:rgba(245,197,24,.08)':r===2?'background:rgba(200,212,220,.05)':r===3?'background:rgba(205,127,50,.05)':r===4?'background:rgba(255,255,255,.03)':'')+'">'
+      +'<td class="rn">'+r+'</td>'
+      +'<td><div style="display:flex;align-items:center">'
+      +'<div class="av" style="background:'+col+'">'+p.prenom[0].toUpperCase()+'</div>'
+      +'<div><div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap"><span style="font-weight:700">'+p.prenom+' '+p.nom+'</span>'
+      +(isMe?'<span class="me-tag">vous</span>':'')+'</div>'
+      +(l?'<div style="font-size:.58rem;color:rgba(245,197,24,.65);font-weight:700;margin-top:1px">'+l.short+'</div>':'')
+      +'</div></div></td>'
+      +'<td class="pts">'+p.total+'</td>'
+      +'<td style="text-align:center;color:var(--gold);font-family:\'Bebas Neue\',sans-serif;font-size:1.05rem">'+p.exact+'</td>'
+      +'<td style="text-align:center;color:#4dcc7a;font-family:\'Bebas Neue\',sans-serif;font-size:1.05rem">'+p.vainqueur+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+// TABS + TOAST
+function sw(tab,silent){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  var tabs=['pronos','classement','partenaires','participants','resultats'];
+  var idx=tabs.indexOf(tab);
+  if(idx>=0) document.querySelectorAll('.tab')[idx].classList.add('on');
+  var panel=document.getElementById('panel-'+tab);
+  if(panel) panel.classList.add('on');
+  document.getElementById('sbar').style.display=(tab==='pronos'&&user&&!user.isAdmin)?'flex':'none';
+  if(tab==='classement'&&!silent) renderCl();
+}
+function toast(msg,type){
+  var el=document.getElementById('toast');
+  el.textContent=msg;el.className='toast '+(type||'ok')+' show';
+  setTimeout(function(){el.classList.remove('show');},3000);
+}
+</script>
+</body>
+</html>
